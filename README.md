@@ -33,6 +33,10 @@ User
 
 🗄️ Database Setup (MySQL + XAMPP)
 
+Clone the repository with the following command:
+```
+git clone https://github.com/heins2004/PetConnect.git
+```
 PetConnect uses MySQL, hosted locally through XAMPP.
 1. Start MySQL
 a. Open XAMPP Control Panel
