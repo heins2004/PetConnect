@@ -57,6 +57,11 @@ Create or import the database:
 pip install mysqlclient
 ```
 🚀 Run the Project
+
+To open the project, first move into the PetConnect folder:
+```
+cd path\PetConnect
+```
 1. Activate Virtual Environment
 Environment folder is named `venv2`:
 ```
