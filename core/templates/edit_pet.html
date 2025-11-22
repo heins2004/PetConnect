@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pet</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background: url('{% static "images/inner2.jpg" %}') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea, select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        input, textarea, select {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        background-color: #fff;
+    }
+    textarea {
+        resize: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Pet Details</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">Save Changes</button>
+        </form>
+        <div class="form-footer">
+            <a href="{% url 'profile-page' user_id=request.user.id %}">Back to Profile</a>
+        </div>
+    </div>
+</body>
+</html>

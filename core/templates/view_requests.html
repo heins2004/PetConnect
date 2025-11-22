@@ -1,0 +1,640 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Adopt A Buddy</title>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- //google-fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">           
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+    <link rel="stylesheet" href="{% static 'css/petDetails.css' %}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'images/profilebg.jpg' %}");
+            background-size: cover;
+        }
+
+        .mainbody {
+            padding: 20px;
+            background-image: url("{% static 'images/profilebg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .description {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            grid-column: span 2;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .left, .right {
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .product_header {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        }
+        .descrow {
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .descrow:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .descrow span {
+            font-weight: bold;
+            color: #dd215a;
+        }
+        .stat{
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .stat:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat span {
+            font-weight: bold;
+            color: #dd215a;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #ddd;
+            border: none;
+            border-radius: 2px;
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #f0f0f0d5;
+        }
+
+        .btn-style-white {
+            background-color: white;
+        }
+
+        .btn-style-white:hover {
+            background-color: #white;
+        }
+
+        .add_post {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .submit {
+            text-align: right;
+        }
+
+        .right {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product_header {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #b2adad;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .request-section {
+            background-color: rgba(255, 255, 255, 0.379);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .transaction-section {
+            background-color: rgba(255, 255, 255, 0.379);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .descrow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pet-name-label {
+            color: #d61d5a;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .status-label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .status-label.pending {
+            color: #f39c12;
+        }
+
+        .status-label.approved {
+            color: #28a745;
+        }
+
+        .status-label.rejected {
+            color: #dc3545;
+        }
+
+        .no-requests-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #777;
+            font-style: italic;
+            margin-top: 30px;
+        }
+
+        .descrow b {
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.2rem;
+           
+        }
+
+        .user-profile {
+            padding: 0px;
+            background-color: #f5f5f5;
+            border-radius: 0px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-profile h2 {
+            color: rgb(160, 5, 5);
+            font-weight: bold;
+        }
+
+        .user-profile p {
+            color: rgb(160, 5, 5);
+            font-weight: bold;
+        }
+
+        .edit-profile-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #45a049;
+        }
+
+        .edit-icon {
+            margin-left: 10px;
+        }
+      
+       
+    </style>
+</head>
+
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand d-flex align-items-center" href="{% url 'index-page' %}">
+                        <i class="fa fa-paw mr-1" aria-hidden="true"></i>PetConnect</a>
+                </h1>
+                <!-- if logo is image enable this   
+    <a class="navbar-brand" href="{% url 'index-page' %}">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index-page' %}"  href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about-page' %}"  href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'explore-page' %}"  href="explore.html">Explore</a>
+                        </li>
+                        <li class="nav-item active">
+                        {% if user.id %}
+                        <a class="nav-link" href="{% url 'profile-page' user_id=request.user.id %}">Profile</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'login-page' %}">Profile</a>
+                        {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact-page' %}"  href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.id %}
+                            <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                            <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'login-page' %}">Login</a>
+                            {% endif %}
+                        </li>
+ 
+                        <!-- search button -->
+                        <!-- <div class="search-right">
+                            <form action="#search" method="GET" class="search-box position-relative">
+                                <div class="input-search">
+                                    <input type="search" placeholder="Enter Keyword" name="search" required="required"
+                                        autofocus="" class="search-popup">
+                                </div>
+                                <button type="submit" class="btn search-btn"><i class="fa fa-search"
+                                        aria-hidden="true"></i></button>
+                            </form>
+                        </div> -->
+                        <!-- //search button -->
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <div class="w3l-breadcrumb">
+            <div class="container">
+                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Explore</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="{% url 'index-page' %}">Home</a></li>
+                    <li class="active"><a href="{% url 'explore-page' %}"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Explore</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Details</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //inner banner -->
+    {% if user.is_authenticated %}
+    <section class="user-profile py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="text-center" style="color: rgb(160, 5, 5); font-weight: bold;">Welcome: {{ user.username }}!</h2>
+                    <p class="text-center" style="color: rgb(160, 5, 5); font-weight: bold;">Email: {{ user.email }}</p>
+                </div>
+                <a href="{% url 'edit_profile' %}" class="edit-profile-btn">
+                    Edit Profile
+                    <i class="fa fa-edit edit-icon" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+      <!-- MAINBODY -->
+
+      {% block content %}
+    <div class="requests-section">
+        <h1 class="product_header" style="background-color: black; color: white; padding: 10px; text-align: center;">
+            Requests for {{ transaction.name }}
+        </h1>
+
+        <div class="requests_container" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between;">
+            {% if requests %}
+                {% for request_data in requests %}
+                <div class="request_card" style="width: calc(50% - 10px); background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: relative; display: flex; flex-direction: column; padding-bottom: 50px;">
+                    
+                    <!-- Hide Button (Top Right) -->
+                    <form action="{% url 'hide-request' request_data.id %}" method="post" style="position: absolute; top: 10px; right: 10px;">
+                        {% csrf_token %}
+                        <button type="submit" style="background: none; border: none; cursor: pointer;">
+                            <img src="/static/images/trash-icon.png" alt="Hide" style="width: 25px; height: 35px;">
+                        </button>
+                    </form>
+
+                    <!-- Request Details Section -->
+                    <div style="display: flex; justify-content: flex-start; gap: 20px;">                        
+                        <div style="width: 50%; flex-shrink: 0;">
+                            <p><strong>Requester:</strong> {{ request_data.applicant_id.first_name }} {{ request_data.applicant_id.last_name }}</p>
+                            <p><strong>Email:</strong> {{ request_data.applicant_id.email }}</p>
+                            <p><strong>Reason:</strong> {{ request_data.reason }}</p>
+                        </div>
+                    
+                        <!-- Middle Section (Moved closer by reducing left section width and adding margin) -->
+                        <div style="width: 30%; margin-left: -15px;">
+                            <p><strong>Status:</strong> {{ request_data.status }}</p>
+                            <p><strong>Phone:</strong> {{ request_data.applicant_id.phone }}</p>
+                            <p><strong>Location:</strong> {{ request_data.applicant_id.area }}, {{ request_data.applicant_id.city }}, {{ request_data.applicant_id.country }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Buttons (Bottom Right) -->
+                    <div style="display: flex; flex-direction: column; align-items: flex-end; position: absolute; bottom: 10px; right: 10px;">
+                        <form action="{% url 'approve-request' request_data.id %}" method="post" style="width: 150px;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success" style="width: 100%;">Approve</button>
+                        </form>
+                        
+                        <form action="{% url 'reject-request' request_data.id %}" method="post" style="width: 150px; margin-top: 5px;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger" style="width: 100%;">Reject</button>
+                        </form>
+                    </div>
+
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No requests available for this transaction.</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+   
+ <!-- footer -->
+ <section class="w3l-footer-16">
+    <div class="w3l-footer-16-main">
+        <div class="container">
+            <div class="row footer-p">
+                <div class="col-lg-4 pr-lg-5">
+                    <a class="logo" href="{% url 'index-page' %}"><i class="fa fa-paw" aria-hidden="true"></i> Adopt A Buddy</a>
+                    <p class="mt-4">At Adopt a Buddy, we believe every animal deserves a second chance and every home deserves the 
+                        unconditional love of a pet. Our mission is to connect homeless
+                         and rescued pets with caring individuals and families, creating 
+                         lifelong bonds and beautiful stories of companionship. </p>
+                </div>
+                <div class="col-lg-4 mt-lg-0 mt-4">
+                    <h3>Pages</h3>
+                    <div class="row">
+                        <div class="col-6 column">
+                            <ul class="footer-gd-16">
+                                <li><a href="{% url 'index-page' %}"><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i>Home</a></li>
+                                <li><a href="{% url 'about-page' %}"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
+                                <li><a href="{% url 'explore-page' %}"><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i>Explore</a></li>
+                                <li><a href="{% url 'contact-page' %}"><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i>Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-7 column mt-lg-0 mt-4">
+                    <h3>Newsletter </h3>
+                    <div class="end-column">
+                        <h3>Subscribe Here Now</h3>
+                        <form action="#" class="subscribe" method="post">
+                            <input type="email" name="email" placeholder="Email Address" required="">
+                            <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
+                        </form>
+                        <p>Subscribe to our mailing list and get updates to your email inbox.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
+                <div class="columns text-lg-left">
+                    <p class="copy-text">@ 2025 Adopt A Buddy. All rights reserved. Design by <a>Adopt A Buddy</a>
+                    </p>
+                </div>
+                <div class="columns-2 mt-md-0 mt-3">
+                    <ul class="social">
+                        <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                        </li>
+                        <li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                        </li>
+                        <li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                        </li>
+                        <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //footer -->
+
+<!-- Js scripts -->
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" title="Go to top">
+    <span class="fa fa-level-up" aria-hidden="true"></span>
+</button>
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- //move top -->
+
+<!-- common jquery plugin -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<!-- //common jquery plugin -->
+
+<!-- theme switch js (light and dark)-->
+<script src="{% static 'js/theme-change.js' %}"></script>
+<script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function () {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function (i, char) {
+                    setTimeout(function () {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function () {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+</script>
+<!-- //theme switch js (light and dark)-->
+
+<!-- MENU-JS -->
+<script>
+    $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+</script>
+<!-- //MENU-JS -->
+
+<!-- disable body scroll which navbar is in active -->
+<script>
+    $(function () {
+        $('.navbar-toggler').click(function () {
+            $('body').toggleClass('noscroll');
+        })
+    });
+</script>
+<!-- //disable body scroll which navbar is in active -->
+
+<!--bootstrap-->
+<script  src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- //bootstrap-->
+<!-- //Js scripts -->
+</body>
+
+</html>

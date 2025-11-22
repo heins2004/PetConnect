@@ -1,0 +1,40 @@
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Adoption Requests</h2>
+    
+    {% if applications %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Pet Name</th>
+                        <th>Requested On</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.transaction_id.name }}</td>
+                            <td>{{ application.application_date }}</td>
+                            <td>
+                                {% if application.status == 'Pending' %}
+                                    <span class="badge badge-warning">Pending</span>
+                                {% elif application.status == 'Approved' %}
+                                    <span class="badge badge-success">Approved</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Rejected</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">You have not submitted any adoption requests yet.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

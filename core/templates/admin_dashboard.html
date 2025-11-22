@@ -1,0 +1,293 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+    <style>
+        body {
+            background: url("{% static 'images/' %}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #048825;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #048f04;
+            font-size: 1rem;
+            padding: 15px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .sidebar a:hover {
+            color: white;
+            background-color: #d80d0d;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar a.active {
+            background-color: #d80d0d;
+            color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4CAF50;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: #fff;
+        }
+
+        .table thead {
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .table th, .table td {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table td {
+            font-size: 15px;
+            color: #333;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            align-items: center;
+        }
+
+        .dashboard-title {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(to right, #e93108, #77a415, #4CAF50, #007BFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            padding: 20px 0;
+        }
+
+        .user-title {
+            font-size: 42px;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(to right, #c16b40, #9c820e, #03c309, #0370de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            padding: 20px 0;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-form input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        .search-form button {
+            background-color: #069008;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: bold;
+        }
+
+        .search-form button:hover {
+            background-color: #15bc39;
+        }
+
+        @media (max-width: 600px) {
+            .search-form {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .search-form input {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>ADMIN PANEL</h2>
+        <img src="{% static 'images/user.png' %}" alt="Admin Icon" class="sidebar-icon">
+        <a href="{% url 'admin-dashboard' %}">Dashboard</a>
+        <a href="{% url 'transaction-create-page' %}">Add New Pet</a>
+        <a href="{% url 'transactions_list' %}">Transactions</a>
+        <a href="{% url 'requests_list' %}">Requests</a>
+        <a href="{% url 'report' %}">Reports</a>
+        <a href="{% url 'inquiries_list' %}">Inquiries</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <div class="content">
+        <h1 class="dashboard-title">ADMIN DASHBOARD</h1>
+        <div class="section">
+            <h2 class="user-title" style="font-size: 60px;">Users</h2>
+
+            <!-- Search Form -->
+            <form method="GET" action="{% url 'admin-dashboard' %}" class="search-form">
+                <input type="text" name="search" placeholder="Search by ID or Username" value="{{ request.GET.search }}" />
+                <button type="submit">Search</button>
+            </form>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Area</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        {% if not user.is_staff %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.phone }}</td>
+                                <td>{{ user.area }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

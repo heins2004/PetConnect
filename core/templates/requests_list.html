@@ -1,0 +1,195 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Transactions List</title>
+    <!-- Template CSS Style link -->
+    <style>
+        body {
+            background-image: url("{% static 'images/background.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff3e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #0a2643;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #ffffff53;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: 0.2s ease-in-out;
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+a {
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #1c5d99;
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(to right, #ff5733, #ffcc00);
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background: linear-gradient(to right, #ffcc00, #ff5733);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .table th, .table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Requests List</h1>
+    
+        <!-- Requests Section -->
+        <div class="section">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Applicant</th>
+                            <th>Pet</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in requests %}
+                        <tr>
+                            <td>{{ request.id }}</td>
+                            <td>{{ request.reason }}</td>
+                            <td>{{ request.status }}</td>
+                            <td>
+                                <!-- Link to the admin dashboard for the applicant -->
+                                <a href="{% url 'admin-dashboard' %}?user_id={{ request.applicant_id.id }}">
+                                    {{ request.applicant_id.username }}
+                                </a>
+                            </td>
+                            <td>
+                                <!-- Link to the transactions list and show the pet name instead of ID -->
+                                <a href="{% url 'transactions_list' %}?transaction_id={{ request.pet_id.id }}">
+                                    {{ request.pet_id.name }}
+                                </a>
+                            </td>
+                            <td>
+                                <!-- Delete request form -->
+                                <form action="{% url 'request-delete-page' request_id=request.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <!-- Back to Home button -->
+        <a href="{% url 'backtohome' %}" class="btn btn-primary back-button">Back To Home</a>
+    </div>
+    </body>
+    </html>
+    

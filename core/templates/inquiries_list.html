@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inquiries List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: url("{% static 'images/background.jpg' %}");
+            background-size: cover;
+            color: #333;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.43);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+            margin-bottom: 20px;
+            font-size: 34px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        th {
+            background-color: #eaeaea;
+        }
+
+        .delete-button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .delete-button:hover {
+            background: #e60000;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .back-button:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'home' %}" class="back-button">← Back to Home</a>
+
+    <div class="container">
+        <h1>Inquiries</h1>
+        {% if inquiries %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Issue</th>
+                        <th>Query</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for inquiry in inquiries %}
+                        <tr>
+                            <td>{{ inquiry.id }}</td>
+                            <td>{{ inquiry.name }}</td>
+                            <td>{{ inquiry.email }}</td>
+                            <td>{{ inquiry.phone }}</td>
+                            <td>{{ inquiry.issue }}</td>
+                            <td>{{ inquiry.query }}</td>
+                            <td>
+                                <form method="post" action="{% url 'delete_inquiry' inquiry.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="delete-button">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No inquiries found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

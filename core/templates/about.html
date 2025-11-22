@@ -1,0 +1,429 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PetConnect</title>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet"  href="{% static 'css/style-starter.css' %}">
+</head>
+
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand d-flex align-items-center" href="{% url 'index-page' %}">
+                        <i class="fa fa-paw mr-1" aria-hidden="true"></i>PetConnect</a>
+                </h1>
+                <!-- if logo is image enable this   
+    <a class="navbar-brand"  href="#index.html">
+        <img src="{% static '' %}" src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index-page' %}"  href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'about-page' %}"  href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'explore-page' %}"  href="explore.html">Explore</a>
+                        </li>
+                        <li class="nav-item">
+                        {% if user.id %}
+                        <a class="nav-link" href="{% url 'profile-page' user_id=request.user.id %}">Profile</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'login-page' %}">Profile</a>
+                        {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact-page' %}"  href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.id %}
+                            <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                            <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'login-page' %}">Login</a>
+                            {% endif %}
+                        </li>
+ 
+                        <!-- search button -->
+                        <!-- <div class="search-right">
+                            <form action="#search" method="GET" class="search-box position-relative">
+                                <div class="input-search">
+                                    <input type="search" placeholder="Enter Keyword" name="search" required="required"
+                                        autofocus="" class="search-popup">
+                                </div>
+                                <button type="submit" class="btn search-btn"><i class="fa fa-search"
+                                        aria-hidden="true"></i></button>
+                            </form>
+                        </div> -->
+                        <!-- //search button -->
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">About Us</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="{% url 'index-page' %}">Home</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>About Us</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+
+    <!-- about section -->
+    <section class="w3l-about-2 py-5" >
+        <div class="container py-md-5 py-4">
+            <div class="row align-items-center justify-content-between ml-5">
+                <div class="col-lg-6 about-2-secs-left pr-lg-5">
+                    <h3 class="title-style mb-sm-3 mb-2">Few Words about our Care</h3>
+                    <p>We are more than just a platform—we are a community of animal lovers, rescuers, and adopters who work together to
+                         give every furry friend a second chance at life. 
+                         From wagging tails to gentle purrs, every adoption brings hope, love, 
+                         and joy to both pets and their new owners.</p>
+                    <ul class="list-about-2 mt-sm-4 mt-3">
+                        <li class="py-1"><i class="fa fa-check-square-o mr-2" aria-hidden="true"></i>Rescue and Rehabilitation</li>
+                        <li class="py-2"><i class="fa fa-check-square-o mr-2" aria-hidden="true"></i>A Personalized Match
+                            laboris</li>
+                        <li class="py-1"><i class="fa fa-check-square-o mr-2" aria-hidden="true"></i>Ongoing Support
+                            </li>
+                    </ul>
+                    <div class="mt-4">
+                        <a class="btn btn-style-white btn-style-primary" href="{% url 'explore-page' %}">Explore</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 about-2-secs-right mt-lg-0 mt-5 pl-5">
+                    <img src="{% static 'images/about2.jpg' %}" alt="" class="img-fluid img-responsive" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about section -->
+
+    <!-- team section -->
+    <section class="w3l-team py-5" id="team">
+        <div class="container py-lg-4 py-sm-3">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="section-heading mb-sm-5 mb-4">
+                        <h3 class="title-style mb-2">Why Choose Us?</h3>
+                        <p class="lead">
+                            At Adopt a Buddy, we believe every animal deserves a second chance and every home deserves the unconditional love of a pet. Our mission is to connect homeless and rescued pets with caring individuals and families, creating lifelong bonds and beautiful stories of companionship.
+
+We are passionate about making the adoption process as smooth and meaningful as possible. From wagging tails to soft purrs, our goal is to ensure every pet finds a loving home where they can thrive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div >
+                    "Every adoption is a new beginning."
+                    "I adopted Peanut, a bunny, and she’s been such a joy! This platform doesn’t just help animals—it changes lives. Peanut and I are proof of that."
+                    – Lily, bunny lover
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- team section -->
+
+    <!-- customers section -->
+    <!-- <section class="w3l-aboutblock py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="row">
+                <div class="col-lg-6 about-right-faq align-self pr-xl-5">
+                    <h3 class="title-style mb-2">Happy Customers</h3>
+                    <p class="mt-3">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
+                        ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Non quae, fugiat.</p>
+                    <p class="mt-3">Semper at tempufddfel. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Non quae, fugiat. Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
+                        ultrices in ligula.</p>
+                    <div class="two-grids mt-5">
+                        <div class="grids_info">
+                            <span class="fa fa-user-plus"></span>
+                            <div class="detail">
+                                <h4>100K+</h4>
+                                <p class="">Customers</p>
+                            </div>
+                        </div>
+                        <div class="grids_info">
+                            <span class="fa fa-thumbs-up"></span>
+                            <div class="detail">
+                                <h4>100%</h4>
+                                <p class="">Satisfaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 eft-wthree-img mt-lg-0 mt-5">
+                    <div class="content-slider">
+                        <div class="clients-slider">
+                            <div class="mask">
+                                <ul>
+                                    <li class="anim1 d-flex">
+                                        <div class="col-2 img-quote">
+                                            <img src="{% static '' %}" src="./assets/images/testi1.jpg" class="img-fluid rounded-circle"
+                                                alt="client image" />
+                                        </div>
+                                        <div class="col-10 content-testi">
+                                            <blockquote class="quote"><q>Duis aute irure dolor in reprehenderit in
+                                                    voluptate
+                                                    velit esse
+                                                    cillum dolore eu. Excepteur sint occaecat cupidatat
+                                                    non proident, sunt in culpa qui officia deserunt mollit anim id est
+                                                    laborum.
+                                                </q>
+                                            </blockquote>
+                                            <h5 class="source">Mario Spe</h5>
+                                        </div>
+                                    </li>
+                                    <li class="anim2 d-flex mt-4">
+                                        <div class="col-2 img-quote">
+                                            <img src="{% static '' %}" src="./assets/images/testi2.jpg" class="img-fluid rounded-circle"
+                                                alt="client image" />
+                                        </div>
+                                        <div class="col-10 content-testi">
+                                            <blockquote class="quote"><q>Sed ut perspiciatis unde omnis iste natus error
+                                                    sit
+                                                    voluptatem
+                                                    accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                                                    quae ab
+                                                    illo
+                                                    inventore.
+                                                </q> </blockquote>
+                                            <h5 class="source">Petey Cru</h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- //customers section -->
+
+    <!-- footer -->
+    <section class="w3l-footer-16">
+        <div class="w3l-footer-16-main">
+            <div class="container">
+                <div class="row footer-p">
+                    <div class="col-lg-4 pr-lg-5">
+                        <a class="logo" href="{% url 'index-page' %}" <i class="fa fa-paw" aria-hidden="true"></i> Adopt A Buddy</a>
+                        <p class="mt-4">At Adopt a Buddy, we don’t just find homes for pets—we create families. By adopting through us, you’re not just changing a pet’s 
+                            life—you’re enriching your own. Together, let’s make the world a kinder place for animals, one adoption at a time.</p>
+                    </div>
+                    <div class="col-lg-4 mt-lg-0 mt-4">
+                        <h3>Pages</h3>
+                        <div class="row">
+                            <div class="col-6 column">
+                                <ul class="footer-gd-16">
+                                    <li><a href="{% url 'index-page' %}"><i class="fa fa-angle-right"
+                                                aria-hidden="true"></i>Home</a></li>
+                                    <li><a href="{% url 'about-page' %}"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
+                                    <li><a href="{% url 'explore-page' %}"><i class="fa fa-angle-right"
+                                                aria-hidden="true"></i>Explore</a></li>
+                                    <li><a href="{% url 'contact-page' %}"><i class="fa fa-angle-right"
+                                                aria-hidden="true"></i>Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-7 column mt-lg-0 mt-4">
+                        <h3>Newsletter </h3>
+                        <div class="end-column">
+                            <h3>Subscribe Here Now</h3>
+                            <form action="#" class="subscribe" method="post">
+                                <input type="email" name="email" placeholder="Email Address" required="">
+                                <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
+                            </form>
+                            <p>Subscribe to our mailing list and get updates to your email inbox.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
+                    <div class="columns text-lg-left">
+                        <p class="copy-text">@ 2025 AdoptaBuddy. All rights reserved. Design by <a>AdoptaBuddy</a>
+                        </p>
+                    </div>
+                    <div class="columns-2 mt-md-0 mt-3">
+                        <ul class="social">
+                            <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //footer -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"> </script>
+        
+    <!-- //common jquery plugin -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="{% static 'js/theme-change.js' %}" ></script>
+    <script>
+        function autoType(elementClass, typingSpeed) {
+            var thhis = $(elementClass);
+            thhis.css({
+                "position": "relative",
+                "display": "inline-block"
+            });
+            thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+            thhis = thhis.find(".text-js");
+            var text = thhis.text().trim().split('');
+            var amntOfChars = text.length;
+            var newString = "";
+            thhis.text("|");
+            setTimeout(function () {
+                thhis.css("opacity", 1);
+                thhis.prev().removeAttr("style");
+                thhis.text("");
+                for (var i = 0; i < amntOfChars; i++) {
+                    (function (i, char) {
+                        setTimeout(function () {
+                            newString += char;
+                            thhis.text(newString);
+                        }, i * typingSpeed);
+                    })(i + 1, text[i]);
+                }
+            }, 1500);
+        }
+    
+        $(document).ready(function () {
+            // Now to start autoTyping just call the autoType function with the 
+            // class of outer div
+            // The second paramter is the speed between each letter is typed.   
+            autoType(".type-js", 200);
+        });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!--bootstrap-->
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Transactions List</title>    
+    <style>
+        body {
+            background-image: url("{% static 'images/back.webp' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff46;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 46px;
+            color: #327bc3;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Filter Section */
+        .filter-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
+
+        .filter-container label {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        select {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #dddddd57;
+            background: transparent;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+        }
+
+        select:hover, select:focus {
+            border-color: #4CAF50;
+        }
+
+        /* Table Styling */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff6b;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table td.description {
+            text-align: justify;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+            transition: 0.2s ease-in-out;
+        }
+
+        /* Image Styling */
+        .animal-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(3, 3, 3);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #600606;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #eb0511;
+        }
+
+        .back-button:active {
+            background-color: #824646;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .table th, .table td {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .btn {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .filter-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'backtohome' %}" class="back-button">Back To Home</a>
+    <div class="container">
+        <h1>Transactions List</h1>
+
+        <!-- Filter Form -->
+        <div class="filter-container">
+            <form method="GET">
+                <label for="status_filter">Filter :</label>
+                <select name="status" id="status_filter" onchange="this.form.submit()">
+                    <option value="">All</option>
+                    <option value="Pending" {% if request.GET.status == 'Pending' %}selected{% endif %}>Pending</option>
+                    <option value="Accepted" {% if request.GET.status == 'Accepted' %}selected{% endif %}>Accepted</option>
+                </select>
+            </form>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Animal Type</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Donor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.name }}</td>
+                    <td>{{ transaction.animal_type }}</td>
+                    <td class="description">{{ transaction.desc }}</td>
+                    <td>{{ transaction.status }}</td>
+                    <td>{{ transaction.donor_id.username }}</td>
+                    <td>
+                        <form action="{% url 'transaction-delete-page' transaction_id=transaction.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn delete-btn">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,676 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Buddy</title>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+</head>
+<style>
+    .w3l-banner {
+        background: url("{% static 'images/cute.png' %}") no-repeat center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        z-index: 0;
+        position: relative;
+        min-height: 800px;
+        min-height: 98vh;
+        display: flex;
+        align-items: center;
+    }
+    body {
+        background-image: url('{% static "images/pet11.jpg" %}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand d-flex align-items-center" href="{% url 'index-page' %}">
+                        <i class="fa fa-paw mr-1" aria-hidden="true"></i>PetConnect</a>
+                </h1>
+                <button class="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'index-page' %}">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about-page' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'explore-page' %}">Explore</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href="{% url 'profile-page' user_id=user.id %}">Profile</a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact-page' %}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                                <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'logout' %}">Logout</a>
+                            {% else %}
+                                <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'login-page' %}">Login</a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-style-primary btn-primary" href="{% url 'admin-login' %}">Admin Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <br><br>
+    <!-- User Profile Section -->
+    {% if user.is_authenticated %}
+    {% endif %}
+
+  <!-- banner section -->
+<section class="w3l-banner pt-5 mt-4" style="position: relative; background: url{% static 'images/cute1.png' %} no-repeat center center; background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;"></section>
+    <div class="container" style="position: absolute; bottom: 70px; left: 20px !important;"></div>
+        <div class="mt-4">
+            <a href="{% url 'explore-page' %}" class="btn btn-warning px-4 py-2" style="font-size: 18px; font-weight: bold; border-radius: 30px; text-transform: uppercase; position: absolute; bottom: 60px; left: 50px !important;">Discover More</a>
+        </div>
+    </div>
+</section>
+<!-- //banner section -->
+
+    <!-- about section -->
+    <section class="w3l-features-photo-7 py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row w3l-features-photo-7_top align-items-center">
+                <div class="col-lg-6 w3l-features-photo-7_top-right mb-lg-0 mb-sm-5 mb-4">
+                    <img src="{% static 'images/puppy.jpg' %}" class="img-responsive" alt="" />
+                </div>
+                <div class="col-lg-6 w3l-features-photo-7_top-left pl-lg-4">
+                    <h4 class="title-style mb-2" style="color: black;">About Us</h4>
+                    <p style="color: white;">We are more than just a platform—we are a community of animal lovers, rescuers,
+                        and adopters who work together to give every furry friend a second chance at life. 
+                        From wagging tails to gentle purrs, every adoption brings hope, love, and joy to both pets and their new owners.
+                    </p>
+                    <div class="row feat_top mt-4 pt-lg-3">
+                        <div class="col-6 w3l-features-photo-7-box">
+                            <i class="fa fa-paw" aria-hidden="true"></i>
+                            <h5 class="w3l-feature-text my-2" style="color: rgb(221, 207, 207);">Our Mission</h5>
+                            <p style="color: white;">Compassionate Care: We partner with shelters, rescues, and foster homes to ensure every animal is cared for before adoption.</p>
+                        </div>
+                        <div class="col-6 w3l-features-photo-7-box">
+                            <i class="fa fa-angellist" aria-hidden="true"></i>
+                            <h5 class="w3l-feature-text my-2" style="color: rgb(197, 177, 177);">Our Vision</h5>
+                            <p style="color: white;">Support Beyond Adoption: From tips on Adopt a Buddy to expert advice, we’re here to support you every step of the way.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about section -->
+
+    <!-- what we do section -->
+    <div class="w3l-grids-block-5 py-5">
+        <div class="container pb-md-5 py-4">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="section-heading mb-sm-5 mb-4">
+                        <h3 class="title-style mb-2">What We Do</h3>
+                        <p class="lead" style="color: black;">
+                            make the world a kinder place for animals. Every adoption is a new beginning—a story of love and rescue waiting to be written.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card-single">
+                        <div class="grids5-info">
+                            <a href="#blog"> <img src="{% static 'images/img1.jpg' %}" alt="" /></a>
+                            <div class="blog-info">
+                                <h4><a href="#blog">“The best things in life are rescued.”</a></h4>
+                                <p>we believe every pet deserves a loving and caring home. Our mission is to connect rescued animals with
+                                    compassionate individuals and families, creating bonds that last a lifetime.</p>
+                                <a class="btn btn-style" href="#about">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                    <div class="blog-card-single">
+                        <div class="grids5-info">
+                            <a href="#blog"><img src="{% static 'images/img2.jpg' %}" alt="" /></a>
+                            <div class="blog-info">
+                                <h4><a href="#blog">“A little act of kindness can make a world of difference—for you and for them.”</a></h4>
+                                <p>“Pets may not be our whole life, but they make our lives whole.” – Roger Caras</p>
+                                <a class="btn btn-style" href="#about">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                    <div class="blog-card-single">
+                        <div class="grids5-info">
+                            <a href="#blog"><img src="{% static 'images/img3.jpg' %}" alt="" /></a>
+                            <div class="blog-info">
+                                <h4><a href="#blog">Personalized Matches:</a></h4>
+                                <p> We help you find a pet that fits your lifestyle and needs, creating the perfect match.</p>
+                                <a class="btn btn-style" href="{% url 'about-page' %}">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //what we do section -->
+
+    <!-- customers section -->
+    <section class="w3l-aboutblock py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="row">
+                <div class="col-lg-6 about-right-faq align-self pr-xl-5">
+                    <h3 class="title-style mb-2" style="color: white;">Testimonies</h3>
+                    <p class="mt-3" style="color: white;">"Finding Bella was the best thing that ever happened to us!"
+                        "We adopted Bella through Adopt a Buddy, and she has completely transformed our home with her playful energy and love. The adoption process was seamless, and the support we received was outstanding!"
+                        – Emily & John, proud dog parents</p>
+                    <p class="mt-3" style="color: white;">I adopted Oreo, a senior cat, who was in need of a loving home. It's been the most rewarding experience ever. He’s so gentle and affectionate, and he’s brought so much peace into my life."
+                        – Grace, cat lover</p>
+                    <div class="two-grids mt-5">
+                        <div class="grids_info">
+                            <span class="fa fa-user-plus"></span>
+                            <div class="detail">
+                                <h4>100K+</</h4>
+                                <p class="">Customers</p>
+                            </div>
+                        </div>
+                        <div class="grids_info">
+                            <span class="fa fa-thumbs-up"></span>
+                            <div class="detail">
+                                <h4>100%</h4>
+                                <p class="">Satisfaction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 eft-wthree-img mt-lg-0 mt-5">
+                    <div class="content-slider">
+                        <div class="clients-slider">
+                            <div class="mask">
+                                <ul>
+                                    <li class="anim1 d-flex">
+                                        <div class="col-2 img-quote">
+                                            <img src="{% static 'images/testi1.jpg' %}" class="img-fluid rounded-circle"
+                                                alt="client image" />
+                                        </div>
+                                        <div class="col-10 content-testi">
+                                            <blockquote class="quote"><q style="color: white;">"Saving one pet won’t change the world, 
+                                                but for that one pet, the world will change forever."
+                                                </q>
+                                            </blockquote>
+                                            <h5 class="source">Mario Spe</h5>
+                                        </div>
+                                    </li>
+                                    <li class="anim2 d-flex mt-4">
+                                        <div class="col-2 img-quote">
+                                            <img src="{% static 'images/testi2.jpg' %}" class="img-fluid rounded-circle"
+                                                alt="client image" />
+                                        </div>
+                                        <div class="col-10 content-testi">
+                                            <blockquote class="quote"><q style="color: white;">"Adopting a pet is not just about finding a friend; it’s about giving a life a second chance."
+                                                </q> </blockquote>
+                                            <h5 class="source">Petey Cru</h5>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //customers section -->
+
+    <!-- gallery section -->
+    <div class="gallery section-agile py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="section-heading mb-sm-5 mb-4">
+                        <h3 class="title-style mb-2">Our Gallery</h3>
+                        <p class="lead">
+                            "Every pet deserves a home, and every home deserves unconditional love."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row gallery_grids">
+                <div class="col-3 agile-gallery_grid_main">
+                    <div class="gallery-img-grid gallery_grid1 hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g11.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g1.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gallery-img-grid hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g88.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g8.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gallery-img-grid hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g66.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g6.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 agile-gallery_grid_main">
+                    <div class="row grid-2-gallery">
+                        <div class="col-6 agile-gallery_grid_main">
+                            <div class="gallery-img-grid hover14 column">
+                                <div class="gallery_effect">
+                                    <a href="{% static 'images/g22.jpg' %}" class="js-img-viwer d-block">
+                                        <figure>
+                                            <img src="{% static 'images/g2.jpg' %}" alt=" " class="img-fluid" />
+                                        </figure>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 agile-gallery_grid_main">
+                            <div class="gallery-img-grid hover14 column">
+                                <div class="gallery_effect">
+                                    <a href="{% static 'images/g33.jpg' %}" class="js-img-viwer d-block">
+                                        <figure>
+                                            <img src="{% static 'images/g3.jpg' %}" alt=" " class="img-fluid" />
+                                        </figure>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-img-grid hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g99.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g9.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 agile-gallery_grid_main">
+                    <div class="gallery-img-grid gallery_grid1 hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g44.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g4.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gallery-img-grid hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g77.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g7.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="gallery-img-grid hover14 column">
+                        <div class="gallery_effect">
+                            <a href="{% static 'images/g55.jpg' %}" class="js-img-viwer d-block">
+                                <figure>
+                                    <img src="{% static 'images/g5.jpg' %}" alt=" " class="img-fluid" />
+                                </figure>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //gallery section -->
+
+    <!-- block icons section -->
+    <!-- <section class="w3l-block-sec py-md-5 pt-md-0 pt-2 pb-md-0 pb-5">
+        <div class="container py-md-5 pb-md-0 pb-4">
+            <div class="row left-block-sec">
+                <div class="col-md-4 text-center">
+                    <img class="img-fluid" src="./assets/images/dog2.png" alt=" ">
+                </div>
+                <div class="col-md-8 right-block-bg">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            <h6>Dog Sitting</h6>
+                            <p>Lorem ante ipsum primis in faucibus orci luctus eted ultrices posuere.</p>
+                        </div>
+                        <div class="col-sm-6 mt-sm-0 mt-5">
+                            <i class="fa fa-paw" aria-hidden="true"></i>
+                            <h6>Dog Walking</h6>
+                            <p>Lorem ante ipsum primis in faucibus orci luctus eted ultrices posuere.</p>
+                        </div>
+                        <div class="col-sm-6 mt-5">
+                            <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                            <h6>Dog Dentistry</h6>
+                            <p>Lorem ante ipsum primis in faucibus orci luctus eted ultrices posuere.</p>
+                        </div>
+                        <div class="col-sm-6 mt-5">
+                            <i class="fa fa-scissors" aria-hidden="true"></i>
+                            <h6>Dog Grooming</h6>
+                            <p>Lorem ante ipsum primis in faucibus orci luctus eted ultrices posuere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- //block icons section -->
+
+    <!-- content with bg -->
+    <section class="w3l-content-bg py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="left-content-bg">
+                        <p class="text-tag">Pet Lovers</p>
+                        <h4 class="text-head-content">Our team is filled with highly dedicated pet lovers</h4>
+                        <a class="btn btn-style-white mt-4" href="{% url 'contact-page' %}">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //content with bg -->
+
+    <!-- news -->
+    <!-- <section class="w3l-news py-5" id="news">
+        <div class="container py-md-5 py-4">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="section-heading mb-sm-5 mb-4">
+                        <h3 class="title-style mb-2">Latest News</h3>
+                        <p class="lead">
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque,
+                            eaque ipsa quae ab illo inventore.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-view">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="grids5-info">
+                            <a href="#blog" class="d-block zoom"><img src="./assets/images/blog1.jpg" alt=""
+                                    class="img-fluid news-image"></a>
+                            <div class="blog-info">
+                                <p class="date">Mar 29, 2020</p>
+                                <h4><a href="#blog">How to keep your dog cool this summer</a></h4>
+
+                                <p class="blog-text">Lorem ipsum dolor sit amet nostrum ad minus libero fugiat
+                                    molestiae ullam ipsam quas unde earum...</p>
+                                <a href="#blog" class="btn btn-news">Read More <span
+                                        class="fa fa-angle-right pl-1"></span> </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                        <div class="grids5-info">
+                            <a href="#blog" class="d-block zoom"><img src="./assets/images/blog2.jpg" alt=""
+                                    class="img-fluid news-image"></a>
+                            <div class="blog-info">
+                                <p class="date">Sep 28, 2020</p>
+                                <h4><a href="#blog">Solution for grooming behavior problems</a></h4>
+
+                                <p class="blog-text">Lorem ipsum dolor sit amet nostrum ad minus libero fugiat
+                                    molestiae ullam ipsam quas unde earum...</p>
+                                <a href="#blog" class="btn btn-news">Read More <span
+                                        class="fa fa-angle-right pl-1"></span> </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                        <div class="grids5-info">
+                            <a href="#blog" class="d-block zoom"><img src="./assets/images/blog3.jpg" alt=""
+                                    class="img-fluid news-image"></a>
+                            <div class="blog-info">
+                                <p class="date">Dec 28, 2020</p>
+                                <h4><a href="#blog">Heat stress in the grooming saloon</a></h4>
+
+                                <p class="blog-text">Lorem ipsum dolor sit amet nostrum ad minus libero fugiat
+                                    molestiae ullam ipsam quas unde earum...</p>
+                                <a href="#blog" class="btn btn-news">Read More <span
+                                        class="fa fa-angle-right pl-1"></span> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- //news -->
+
+    <!-- footer -->
+    <section class="w3l-footer-16">
+        <div class="w3l-footer-16-main">
+            <div class="container">
+                <div class="row footer-p">
+                    <div class="col-lg-4 pr-lg-5">
+                        <a class="logo" href="{% url 'index-page' %}"><i class="fa fa-paw" aria-hidden="true"></i> AdoptaBuddy</a>
+                        <p class="mt-4">"Every pet deserves a home, and every home deserves unconditional love." </p>
+                    </div>
+                    <div class="col-lg-4 mt-lg-0 mt-4">
+                        <h3>Pages</h3>
+                        <div class="row">
+                            <div class="col-6 column">
+                                <ul class="footer-gd-16">
+                                    <li><a href="{% url 'index-page' %}"><i class="fa fa-angle-right"
+                                                aria-hidden="true"></i>Home</a></li>
+                                    <li><a href="{% url 'about-page' %}"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
+                                    <li><a href="{% url 'explore-page' %}"><i class="fa fa-angle-right"
+                                                aria-hidden="true"></i>Explore</a></li>
+                                    <li><a href="{% url 'contact-page' %}"><i class="fa fa-angle-right"
+                                                aria-hidden="true"></i>Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-7 column mt-lg-0 mt-4">
+                        <h3>Newsletter </h3>
+                        <div class="end-column">
+                            <h3>Subscribe Here Now</h3>
+                            <form action="#" class="subscribe" method="post">
+                                <input type="email" name="email" placeholder="Email Address" required="">
+                                <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
+                            </form>
+                            <p>Subscribe to our mailing list and get updates to your email inbox.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex below-section justify-content-between align-items-center pt-4 mt-5">
+                    <div class="columns text-lg-left">
+                        <p class="copy-text">@ 2025 AdoptaBuddy. All rights reserved. Design by <a>AdoptaBuddy</a>
+                        </p>
+                    </div>
+                    <div class="columns-2 mt-md-0 mt-3">
+                        <ul class="social">
+                            <li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                            </li>
+                            <li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //footer -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- gallery popup js -->
+    <script src="{% static 'js/theme-change.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sm = new SmartPhoto(".js-img-viwer", {
+                showAnimation: false
+            });
+            // sm.destroy();
+        });
+    </script>
+    <!-- //gallery popup js -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="{% static 'js/theme-change.js' %}"></script>
+    <script>
+        function autoType(elementClass, typingSpeed) {
+            var thhis = $(elementClass);
+            thhis.css({
+                "position": "relative",
+                "display": "inline-block"
+            });
+            thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+            thhis = thhis.find(".text-js");
+            var text = thhis.text().trim().split('');
+            var amntOfChars = text.length;
+            var newString = "";
+            thhis.text("|");
+            setTimeout(function () {
+                thhis.css("opacity", 1);
+                thhis.prev().removeAttr("style");
+                thhis.text("");
+                for (var i = 0; i < amntOfChars; i++) {
+                    (function (i, char) {
+                        setTimeout(function () {
+                            newString += char;
+                            thhis.text(newString);
+                        }, i * typingSpeed);
+                    })(i + 1, text[i]);
+                }
+            }, 1500);
+        }
+
+        $(document).ready(function () {
+            // Now to start autoTyping just call the autoType function with the 
+            // class of outer div
+            // The second paramter is the speed between each letter is typed.   
+            autoType(".type-js", 200);
+        });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!--bootstrap-->
+    <script  src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+</body>
+
+</html>

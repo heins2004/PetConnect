@@ -1,0 +1,23 @@
+<!-- filepath: /c:/Users/jibiy/Pet-Adoption-System-master/Pet-Adoption-System-master/system/core/templates/transaction_create.html -->
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add New Pet</title>
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Pet</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Pet</button>
+        </form>
+    </div>
+</body>
+</html>

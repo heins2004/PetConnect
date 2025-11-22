@@ -1,0 +1,99 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Edit Profile</title>
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
+    <style>
+        body {
+            background: url('{% static "images/PRI_214918718.jpg" %}') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            font-size: 2em;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: center;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+        <div class="form-footer">
+            <a href="{% url 'profile-page' user_id=user.id %}">Back to Profile</a>
+        </div>
+    </div>
+</body>
+</html>
